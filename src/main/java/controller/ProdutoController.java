@@ -27,7 +27,6 @@ public class ProdutoController {
         return ResponseEntity.ok(service.editar(id, produto));
     }
 
-    // 🔹 Soft delete (desativa)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.desativar(id);
@@ -44,20 +43,17 @@ public class ProdutoController {
         return ResponseEntity.ok(service.listarAtivos());
     }
 
-    // 🔹 Alterar status via ENUM
     @PatchMapping("/{id}/status")
     public ResponseEntity<Produto> alterarStatus(@PathVariable Long id,
                                                  @RequestParam StatusProduto status) {
         return ResponseEntity.ok(service.alterarStatus(id, status));
     }
 
-    // 🔹 Endpoint específico para ativar
     @PatchMapping("/{id}/ativar")
     public ResponseEntity<Produto> ativar(@PathVariable Long id) {
         return ResponseEntity.ok(service.ativar(id));
     }
 
-    // 🔹 Endpoint específico para desativar
     @PatchMapping("/{id}/desativar")
     public ResponseEntity<Produto> desativar(@PathVariable Long id) {
         return ResponseEntity.ok(service.desativar(id));
